@@ -1,0 +1,4 @@
+$(var my_node_ns)/my_node:
+  ros__parameters:
+    my_parameter: My Parameter Set In A YAML File
+    use_sim_time: false
