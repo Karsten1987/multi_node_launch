@@ -32,4 +32,8 @@ install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}/
 )
 
+install(FILES my_node_implicit.yaml my_node_explicit.yaml
+  DESTINATION share/${PROJECT_NAME}/
+)
+
 ament_package()

@@ -11,19 +11,22 @@ public:
   MyNode()
     : Node("my_node")
   {
-    this->declare_parameter<std::string>("my_parameter", "world");
+    this->declare_parameter<std::string>("my_implicit_parameter", "hello");
+    this->declare_parameter<std::string>("my_explicit_parameter", "world");
     timer_ = this->create_wall_timer(
     1000ms, std::bind(&MyNode::respond, this));
   }
 
   void respond()
   {
-    this->get_parameter("my_parameter", parameter_string_);
-    RCLCPP_INFO(this->get_logger(), "Hello %s", parameter_string_.c_str());
+    this->get_parameter("my_implicit_parameter", implicit_parameter_string_);
+    this->get_parameter("my_explicit_parameter", explicit_parameter_string_);
+    RCLCPP_INFO(this->get_logger(), "[%s] [%s]", implicit_parameter_string_.c_str(), explicit_parameter_string_.c_str());
   }
 
 private:
-  std::string parameter_string_;
+  std::string implicit_parameter_string_;
+  std::string explicit_parameter_string_;
   rclcpp::TimerBase::SharedPtr timer_;
 };
 
